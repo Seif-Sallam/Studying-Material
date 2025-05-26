@@ -12,7 +12,7 @@ public:
     void update(int index, int delta) {
         while (index <= data.size()) {
             data[index] += delta;
-            index += index & -index;
+            index += leastSegnificantBit(index);
         }
     }
 
@@ -20,7 +20,7 @@ public:
         int result = 0;
         while(index > 0) {
             result += data[index];
-            index -= index & -index;
+            index -= leastSegnificantBit(index);
         }
         return result;
     }
@@ -30,5 +30,8 @@ public:
     }
 
 private:
+    int leastSegnificantBit(int v) {
+        return v & -v;
+    }
     std::vector<int> data;
 };
